@@ -1,0 +1,26 @@
+#--------------------------------
+# jhead makefile for OS/2
+#--------------------------------
+OBJ=obj
+SRC=.
+
+all: objdir jhead
+
+objdir:
+	@mkdir -p obj
+
+objs = $(OBJ)/jhead.o $(OBJ)/jpgfile.o $(OBJ)/jpgqguess.o $(OBJ)/paths.o \
+	$(OBJ)/exif.o $(OBJ)/iptc.o $(OBJ)/gpsinfo.o $(OBJ)/makernote.o
+
+$(OBJ)/%.o:$(SRC)/%.c
+	${CC} $(CFLAGS) -c $< -o $@
+
+jhead: $(objs) jhead.h
+	${CC} -Zexe -Zargs-wild -Zhigh-mem -Zomf -o jhead $(objs) -lm -lcx
+
+clean:
+	rm -f $(objs) jhead.exe
+
+install:
+	mkdir -p ${DESTDIR}/usr/bin/
+	cp jhead.exe ${DESTDIR}/usr/bin/
