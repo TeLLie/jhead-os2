@@ -160,6 +160,8 @@ static int FileEditComment(char * TempFileName, char * Comment, int CommentSize)
         if (Editor == NULL){
 #ifdef _WIN32
             Editor = "notepad";
+#elif __OS2__
+            Editor = "e"; 
 #else
             Editor = "vi";
 #endif
