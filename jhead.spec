@@ -1,6 +1,6 @@
 # -----------------------------------------------------
 # Define static values
-# ----------------------------------------------------- 
+# -----------------------------------------------------
 
 # -----------------------------------------------------
 # Define requirements for configure, BuildRequire,
@@ -13,7 +13,7 @@
 Name:			jhead
 Summary:		Tool for handling EXIF metadata in JPEG image files
 
-Version:		3.06
+Version:		3.08
 Release:		0
 
 Group:			Libraries
@@ -36,7 +36,7 @@ portions of EXIF format JPEG image files, as produced by most digital cameras.
 # Prepare-Section
 # -----------------------------------------------------
 %prep
-%setup -q 
+%setup -q
 
 # -----------------------------------------------------
 # Build-Section
@@ -67,4 +67,3 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_bindir}/*
 %doc readme.txt usage.html
 %{_mandir}/man1/jhead.1.gz
-
