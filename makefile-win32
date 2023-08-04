@@ -2,18 +2,20 @@
 # jhead makefile for Win32
 #--------------------------------
 
-CC=cl /nologo
+CC=cl /nologo /wd4267
 CFLAGS=-c -Ox -Os -W3 -Zp -D _CRT_SECURE_NO_WARNINGS
 
 
 LINKER=link
 LINKCON = /nologo
-
-all:jhead.exe
-
 OBJ = obj
 
-OBJECTS_JHEAD = $(OBJ)\jhead.obj  \
+all:jhead.exe obj
+
+obj: 
+	mkdir obj
+
+OBJECTS_JHEAD = $(OBJ)\jhead.obj \
                 $(OBJ)\jpgfile.obj \
                 $(OBJ)\jpgqguess.obj \
                 $(OBJ)\myglob.obj \
@@ -23,7 +25,7 @@ OBJECTS_JHEAD = $(OBJ)\jhead.obj  \
                 $(OBJ)\gpsinfo.obj \
                 $(OBJ)\makernote.obj
 
-$(OBJECTS_JHEAD): $(@B).c jhead.h
+$(OBJECTS_JHEAD): $(@B).c jhead.h obj
     $(CC) /Fo$(OBJ)\ $(CFLAGS) $(@B).c
 
 jhead.exe: $(OBJECTS_JHEAD)
